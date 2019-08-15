@@ -1,0 +1,17 @@
+name: Rust
+on: [push]
+
+jobs:
+  build_linux:
+    name: Build Linux
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@master
+    - name: Install dependencies
+      run: |
+        apt-get update -y
+        apt-get install -y sqlite3 libsqlite3-dev
+
+    - name: Build
+      run: cargo build --verbose

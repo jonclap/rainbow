@@ -1,0 +1,69 @@
+name: rainbow
+version: "1.0.0"
+about: Rainbow is a HTTP service and generator that makes using rainbow tables easy.
+
+subcommands:
+    - generate:
+        about: Make rainbow table and load it into data store
+        version: "1.0.0"
+        args:
+            - sqlite:
+                long: sqlite
+                help: path to a SQLite database
+                required: true
+                takes_value: true
+                value_name: "path/to/file.db"
+            - paths:
+                long: file-with-range
+                help: paths to files with ranges; allow format - 'start,end' or 'prefix,start,end'
+                takes_value: true
+                multiple: true
+                conflicts_with: [start, end, prefix]
+                required_unless: start
+            - sep:
+                long: sep
+                help: a separator symbol for a file with a range
+                default_value: ","
+                takes_value: true
+            - start:
+                long: start
+                help: start range
+                takes_value: true
+                required_unless: paths
+            - end:
+                long: end
+                help: end range
+                takes_value: true
+                required_unless: paths
+            - prefix:
+                long: prefix
+                help: prefix
+                takes_value: true
+                default_value: "0"
+            - global-prefix:
+                long: global-prefix
+                help: global prefix allows add prefix for files with ranges
+                default_value: "0"
+                takes_value: true
+            - hasher:
+                long: hasher
+                help: cryptographic hash algorithms
+                takes_value: true
+                default_value: "Sha256"
+                possible_values: [Sha256, Sha512, Sha1, Md5, Blake2b, Blake2s]
+    - server:
+        about: Start HTTP server
+        version: "1.0.0"
+        args:
+            - sqlite:
+                long: sqlite
+                help: path to a SQLite database
+                required: true
+                takes_value: true
+                value_name: "path/to/file.db"
+            - http-addr:
+                long: http-addr
+                help: IP address to bind
+                default_value: "127.0.0.1:8088"
+                required: true
+                takes_value: true

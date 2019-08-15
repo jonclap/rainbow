@@ -1,0 +1,18 @@
+[package]
+name = "rainbow"
+version = "0.1.0"
+authors = ["Jon Clap <jonclap8888@outlook.com>"]
+edition = "2018"
+
+[dependencies]
+actix = "0.8.3"
+log = "0.4.8"
+rust-crypto = "0.2.36"
+rusqlite = "0.19.0"
+r2d2 = "0.8"
+csv = "1.1.1"
+actix-web = "1.0.5"
+serde = "1.0.98"
+env_logger = "0.6.2"
+r2d2_sqlite = "0.11.0"
+clap = {version = "2.33", features = ["yaml"]}
